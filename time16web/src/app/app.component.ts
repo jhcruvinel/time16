@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'time16web';
+  imprime = (title) => {
+    return 'Bem vindo à nossa ' + title;
+    }
 }
