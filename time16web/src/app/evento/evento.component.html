@@ -1,0 +1,23 @@
+<h1>Eventos</h1>
+<div class="table-responsive-lg">
+    <table class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th scope="col">cd_evento</th>
+        <th scope="col">ind_tipo_especial</th>
+        <th scope="col">id_evento</th>
+        <th scope="col">ind_fluxo_ri</th>
+        <th scope="col">ds_evento</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let o of eventos">
+            <th scope="row">{{ o.cd_evento }}</th>
+            <td>{{ o.ind_tipo_especial }}</td>
+            <td>{{ o.id_evento }}</td>
+            <td>{{ o.ind_fluxo_ri }}</td>
+            <td>{{ o.ds_evento }}</td>
+        </tr>
+    </tbody>
+</table>
+</div>

@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { ProcessosComponent } from './processos/processos.component';
 import { SituacaoComponent } from './situacao/situacao.component';
 import { HomeComponent } from './home/home.component';
+import { EventoComponent } from './evento/evento.component';
+import { FluxoprincipalComponent } from './fluxoprincipal/fluxoprincipal.component';
+import { D3testComponent } from './d3test/d3test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProcessosComponent,
     SituacaoComponent,
-    HomeComponent
+    HomeComponent,
+    EventoComponent,
+    FluxoprincipalComponent,
+    D3testComponent
   ],
   imports: [
     BrowserModule,

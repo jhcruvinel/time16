@@ -20,9 +20,9 @@ export class SituacaoComponent implements OnInit {
   consultaSituacoes() {
     axios.get("http://time16-sanjus.ddns.net:5002/situacoes")
     .then(response => {
-      console.log(response);
+      //console.log(response);
       for (let obj of response.data) {
-        console.log(obj);
+        //console.log(obj);
         this.situacoes.push(new Situacao(
             obj.ind_principal,
             obj.ds_situacao,

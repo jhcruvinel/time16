@@ -1,0 +1,45 @@
+<h1>Fluxo Principal</h1>
+
+<select class="form-control" id="exampleFormControlSelect1">
+    <option *ngFor="let tribunal of tribunais" [value]="tribunal">{{tribunal}}</option>
+</select>
+
+<button type="submit" class="btn btn-primary" (click)="atualizar()">
+    Atualizar
+  </button>
+
+<div class="table-responsive-lg">
+    <table class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+        <th scope="col">id_evento</th>
+        <th scope="col">ind_consistente</th>
+        <th scope="col">id_fluxo_movimento</th>
+        <th scope="col">ind_fluxo_ri</th>
+        <th scope="col">sg_tribunal</th>
+        <th scope="col">id_situacao_destino</th>
+        <th scope="col">id_situacao_origem</th>
+        <th scope="col">ind_efetiva</th>
+        <th scope="col">id_grupo</th>
+        <th scope="col">sg_grau</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let o of fluxoprincipal">
+            <th scope="row">{{ o.id_evento }}</th>
+            <td>{{ o.ind_consistente }}</td>
+            <td>{{ o.id_fluxo_movimento }}</td>
+            <td>{{ o.ind_fluxo_ri }}</td>
+            <td>{{ o.sg_tribunal }}</td>
+            <td>{{ o.id_situacao_destino }}</td>
+            <td>{{ o.id_situacao_origem }}</td>
+            <td>{{ o.ind_efetiva }}</td>
+            <td>{{ o.id_grupo }}</td>
+            <td>{{ o.sg_grau }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+ <div class="d3-chart" id="mobileD3"></div>
