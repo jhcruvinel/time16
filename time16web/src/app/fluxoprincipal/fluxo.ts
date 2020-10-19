@@ -6,6 +6,7 @@ export class ParteFluxo {
     sg_tribunal: string;
     id_situacao_destino: number;
     id_situacao_origem: number;
+    ds_situacao_origem: string;
     ind_efetiva: string;
     id_grupo: number;
     sg_grau: string;
@@ -17,6 +18,7 @@ export class ParteFluxo {
             sg_tribunal: string,
             id_situacao_destino: number,
             id_situacao_origem: number,
+            ds_situacao_origem: string,
             ind_efetiva: string,
             id_grupo: number,
             sg_grau: string) {
@@ -27,6 +29,7 @@ export class ParteFluxo {
                 this.sg_tribunal = sg_tribunal;
                 this.id_situacao_destino = id_situacao_destino;
                 this.id_situacao_origem = id_situacao_origem;
+                this.ds_situacao_origem = ds_situacao_origem;
                 this.ind_efetiva = ind_efetiva;
                 this.id_grupo = id_grupo;
                 this.sg_grau = sg_grau;

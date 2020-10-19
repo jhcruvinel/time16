@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ParteFluxo } from './fluxo'
 import axios from "axios";
+import { Situacao } from '../situacao/situacao'
 import * as d3 from 'd3';
 
 @Component({
@@ -9,7 +10,7 @@ import * as d3 from 'd3';
   styleUrls: ['./fluxoprincipal.component.css']
 })
 export class FluxoprincipalComponent implements OnInit {
-  private svg: any;
+  situacoes: Situacao[] = [];
   fluxoprincipal: ParteFluxo[] = [];
   tribunais: string[] = [];
   constructor() {
@@ -17,9 +18,37 @@ export class FluxoprincipalComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.consultaSituacoes()
   }
 
   atualizar(){}
+
+  consultaSituacoes() {
+    axios.get("http://time16-sanjus.ddns.net:5002/situacoes")
+    .then(response => {
+      //console.log(response);
+      for (let obj of response.data) {
+        //console.log(obj);
+        this.situacoes.push(new Situacao(
+            obj.ind_principal,
+            obj.ds_situacao,
+            obj.sg_tribunal,
+            obj.ind_ri,
+            obj.id_situacao,
+            obj.cd_situacao,
+            obj.sg_grau));
+      }
+      console.log('Situacoes carregadas')
+      })
+    .catch(error => {
+        console.error(error);
+      })
+    .finally(() => {});
+    }
+
+    getDsSituacao(id_situacao_origem: number){
+      
+    }
 
   consultaFluxoPrincipal() {
     axios.get("http://time16-sanjus.ddns.net:5002/fluxo/principal")
@@ -39,6 +68,7 @@ export class FluxoprincipalComponent implements OnInit {
           obj.sg_tribunal,
           obj.id_situacao_destino,
           obj.id_situacao_origem,
+          '',
           obj.ind_efetiva,
           obj.id_grupo,
           obj.sg_grau));

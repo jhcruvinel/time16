@@ -13,6 +13,7 @@ import { Visual1Component } from './visual1/visual1.component';
 import { ElasticComponent } from './elastic/elastic.component';
 import { FluxoesperadoComponent } from './fluxoesperado/fluxoesperado.component';
 import { Visual2Component } from './visual2/visual2.component';
+import { Visual3Component } from './visual3/visual3.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { Visual2Component } from './visual2/visual2.component';
     Visual1Component,
     ElasticComponent,
     FluxoesperadoComponent,
-    Visual2Component
+    Visual2Component,
+    Visual3Component
   ],
   imports: [
     BrowserModule,
