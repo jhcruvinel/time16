@@ -10,6 +10,8 @@ import { EventoComponent } from './evento/evento.component';
 import { FluxoprincipalComponent } from './fluxoprincipal/fluxoprincipal.component';
 import { D3testComponent } from './d3test/d3test.component';
 import { Visual1Component } from './visual1/visual1.component';
+import { ElasticComponent } from './elastic/elastic.component';
+import { FluxoesperadoComponent } from './fluxoesperado/fluxoesperado.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { Visual1Component } from './visual1/visual1.component';
     EventoComponent,
     FluxoprincipalComponent,
     D3testComponent,
-    Visual1Component
+    Visual1Component,
+    ElasticComponent,
+    FluxoesperadoComponent
   ],
   imports: [
     BrowserModule,
