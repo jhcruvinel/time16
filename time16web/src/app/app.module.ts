@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { EventoComponent } from './evento/evento.component';
 import { FluxoprincipalComponent } from './fluxoprincipal/fluxoprincipal.component';
 import { D3testComponent } from './d3test/d3test.component';
+import { Visual1Component } from './visual1/visual1.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { D3testComponent } from './d3test/d3test.component';
     HomeComponent,
     EventoComponent,
     FluxoprincipalComponent,
-    D3testComponent
+    D3testComponent,
+    Visual1Component
   ],
   imports: [
     BrowserModule,
