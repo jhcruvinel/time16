@@ -128,7 +128,7 @@ export class Visual2Component implements OnInit {
 
     let force = d3.forceSimulation()
         .nodes(d3.values(nodes))
-        .force("links", d3.forceLink(this.links).distance(350).strength(2))
+        .force("links", d3.forceLink(this.links).distance(400).strength(2))
         .force("charge", d3.forceManyBody().strength(-400))
         .force("x", d3.forceX(500))
         .force("y", d3.forceY(450))
