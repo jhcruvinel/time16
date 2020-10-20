@@ -14,6 +14,8 @@ export class EventoComponent implements OnInit {
     this.consultaEventos();
   }
 
+  evento: Evento
+
   ngOnInit(): void {
   }
 
@@ -37,5 +39,11 @@ export class EventoComponent implements OnInit {
       })
     .finally(() => {});
     }
+
+  cadastrarEvento() {
+
+  }
+
+
 
 }
