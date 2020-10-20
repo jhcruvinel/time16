@@ -18,7 +18,7 @@ import { TribunalComponent } from './tribunal/tribunal.component';
 import { GrauComponent } from './grau/grau.component';
 import { GrupoComponent } from './grupo/grupo.component';
 import { SituacaoCreateComponent } from './situacao/create/situacao.create.component';
-import { SituacaoUpdateComponent } from './situacao/update/update.component';
+import { SituacaoUpdateComponent } from './situacao/update/situacao.update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';

@@ -53,7 +53,7 @@ export class SituacaoComponent implements OnInit {
           })
           .catch((error) => {
             this._snackBar.open(
-              ['Erro no processamento'].join(' - '),
+              ['O registro possui informações relacionadas e por isso não pode ser excluído'].join(' - '),
               'Fechar',
               AppSettings.CONF_SNACK
             );
