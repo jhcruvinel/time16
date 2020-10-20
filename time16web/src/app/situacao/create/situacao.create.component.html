@@ -1,6 +1,5 @@
 <mat-card>
     <mat-card-title>Cadastro de Situações</mat-card-title>
-
     <form [formGroup]="situacaoForm" (ngSubmit)="submitForm()" novalidate>
         <mat-form-field appearance="fill">
             <label>Código Situação</label>
@@ -8,22 +7,25 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <label>Descrição da Situação</label>
-            <input matInput placeholder="Ex. Concluso para Despacho" formControlName="ds_situacao" class="form-control" maxlength="20">
+            <input matInput placeholder="Ex. Concluso para Despacho" formControlName="ds_situacao" class="form-control"
+                maxlength="20">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="display: none;">
             <label>Tribunal</label>
             <input matInput placeholder="Ex. TRT3" formControlName="sg_tribunal" class="form-control" maxlength="20">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill"  style="display: none;">
             <label>Grau</label>
             <input matInput placeholder="Ex. G1 ou G2 ou SUP" formControlName="sg_grau" class="form-control">
         </mat-form-field>
-        <mat-card-footer>	
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <button mat-flat-button color="primary" aria-label="Cadastrar uma nova Situação" type="submit">
-                <mat-icon>add</mat-icon>
+        <div>
+            <button mat-flat-button color="primary" aria-label="Voltar" [routerLink]="'/situacao'">
+                <mat-icon>backspace </mat-icon>
             </button>
-        </mat-button-toggle-group>
-        </mat-card-footer>
+            <span class="sep"></span>
+            <button mat-flat-button color="primary" aria-label="Cadastrar uma nova Situação" type="submit">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
     </form>
 </mat-card>

@@ -19,7 +19,6 @@ import { GrauComponent } from './grau/grau.component';
 import { GrupoComponent } from './grupo/grupo.component';
 import { SituacaoCreateComponent } from './situacao/create/situacao.create.component';
 import { SituacaoUpdateComponent } from './situacao/update/update.component';
-import { SituacaoDeleteComponent } from './situacao/delete/delete.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
@@ -28,6 +27,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonToggleModule } from '@angular/material/button-toggle'
+import { MatSelectModule } from '@angular/material/select'
+import { MatTableModule } from '@angular/material/table'
+import { MatSortModule } from '@angular/material/sort'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle'
     GrupoComponent,
     SituacaoCreateComponent,
     SituacaoUpdateComponent,
-    SituacaoDeleteComponent
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle'
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonToggleModule    
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatTableModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
