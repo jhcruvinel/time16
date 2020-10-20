@@ -32,7 +32,9 @@ import { MatTableModule } from '@angular/material/table'
 import { MatSortModule } from '@angular/material/sort'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ProcessosituacaoComponent } from './processosituacao/processosituacao.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     GrupoComponent,
     SituacaoCreateComponent,
     SituacaoUpdateComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ProcessosituacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatTableModule,
     MatSortModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
   ],
   entryComponents: [
     ConfirmDialogComponent

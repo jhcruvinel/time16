@@ -12,6 +12,7 @@ import { Visual2Component } from './visual2/visual2.component';
 import { Visual3Component } from './visual3/visual3.component';
 import { ElasticComponent } from './elastic/elastic.component';
 import { FluxoesperadoComponent } from './fluxoesperado/fluxoesperado.component';
+import { ProcessosituacaoComponent } from './processosituacao/processosituacao.component';
 import { Routes, RouterModule } from '@angular/router';
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'visual2', component: Visual2Component },
   { path: 'visual3', component: Visual3Component },
   { path: 'elastic', component: ElasticComponent },
-  { path: 'fluxoesperado', component: FluxoesperadoComponent }
+  { path: 'fluxoesperado', component: FluxoesperadoComponent },
+  { path: 'processosituacao', component: ProcessosituacaoComponent }
 ];
 
 @NgModule({

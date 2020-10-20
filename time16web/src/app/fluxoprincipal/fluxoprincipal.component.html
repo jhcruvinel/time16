@@ -1,13 +1,18 @@
 <h1>Fluxo Principal</h1>
-
-<select class="form-control" id="exampleFormControlSelect1">
-    <option *ngFor="let tribunal of tribunais" [value]="tribunal">{{tribunal}}</option>
-</select>
-
-<button type="submit" class="btn btn-primary" (click)="atualizar()">
-    Atualizar
-  </button>
-
+<form>
+    <div class="form-row">
+        <div class="col">
+            <select class="form-control" (change)="onChangeTribunal($event.target.value)" [(ngModel)]="tribunal" name="tribunal">
+                <option *ngFor="let t of tribunais" [value]="t.sg_tribunal">Órgão: {{t.sg_tribunal}}</option>
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" (change)="onChangeGrau($event.target.value)" [(ngModel)]="grau" name="grau">
+                <option *ngFor="let g of graus" [value]="g.sg_grau">Grau: {{g.sg_grau}}</option>
+            </select>
+        </div>
+    </div>
+</form>
 <div class="table-responsive-lg">
     <table class="table table-striped table-bordered table-hover">
     <thead>
@@ -17,8 +22,8 @@
         <th scope="col">id_fluxo_movimento</th>
         <th scope="col">ind_fluxo_ri</th>
         <th scope="col">sg_tribunal</th>
-        <th scope="col">id_situacao_destino</th>
-        <th scope="col">id_situacao_origem</th>
+        <th scope="col">Situação Origem</th>
+        <th scope="col">Situação Destino</th>
         <th scope="col">ind_efetiva</th>
         <th scope="col">id_grupo</th>
         <th scope="col">sg_grau</th>
@@ -31,8 +36,8 @@
             <td>{{ o.id_fluxo_movimento }}</td>
             <td>{{ o.ind_fluxo_ri }}</td>
             <td>{{ o.sg_tribunal }}</td>
-            <td>{{ o.id_situacao_destino }}</td>
-            <td>{{ o.id_situacao_origem }}</td>
+            <td>{{ getDsSituacao(o.id_situacao_origem) }}</td>
+            <td>{{ getDsSituacao(o.id_situacao_destino) }}</td>
             <td>{{ o.ind_efetiva }}</td>
             <td>{{ o.id_grupo }}</td>
             <td>{{ o.sg_grau }}</td>
