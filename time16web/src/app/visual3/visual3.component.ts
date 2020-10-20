@@ -1,11 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Tribunal } from '../tribunal/tribunal';
+import { Grau } from '../grau/grau';
 import * as d3 from 'd3';
+import axios from "axios";
 
-interface HierarchyDatum {
-  name: string;
+/*interface HierarchyDatum {
+    ds_situacao: string;
   value: number;
   children?: Array<HierarchyDatum>;
-}
+}*/
+interface HierarchyDatum {
+    cd_situacao: string;
+    ds_situacao: string;
+    children?: Array<HierarchyDatum>;
+  }
 @Component({
   selector: 'app-visual3',
   templateUrl: './visual3.component.html',
@@ -24,71 +32,77 @@ export class Visual3Component implements OnInit {
     treeData: any;
     nodes: any;
     links: any;
-
+    tribunal: string;
+    tribunais: Tribunal[] = [];
+    grau: string;
+    graus: Grau[] = [];
+  
   constructor() { }
 
   ngOnInit(): void {
-    this.dataList = {
-      name: "A1",
+    this.consultaTribunal();
+    this.dataList = {};
+    /*this.dataList = {
+      ds_situacao: "A1",
       value: 100,
       children: [
           {
-              name: "B1",
+            ds_situacao: "B1",
               value: 100,
               children: [
                   {
-                      name: "C1",
+                    ds_situacao: "C1",
                       value: 100,
                       children: undefined 
                   },
                   {
-                      name: "C2",
+                    ds_situacao: "C2",
                       value: 300,
                       children: [
                           {
-                              name: "D1",
+                            ds_situacao: "D1",
                               value: 100,
                               children: undefined
                           },
                           {
-                              name: "D2",
+                            ds_situacao: "D2",
                               value: 300,
                               children: undefined
                           }
                       ] 
                   },
                   {
-                      name: "C3",
+                    ds_situacao: "C3",
                       value: 200,
                       children: undefined 
                   }
               ]
           },
           {
-              name: "B2",
+            ds_situacao: "B2",
               value: 200,
               children: [
                   {
-                      name: "C4",
+                    ds_situacao: "C4",
                       value: 100,
                       children: undefined 
                   },
                   {
-                      name: "C5",
+                    ds_situacao: "C5",
                       value: 300,
                       children: undefined 
                   },
                   {
-                      name: "C6",
+                    ds_situacao: "C6",
                       value: 200,
                       children: [
                           {
-                              name: "D3",
+                            ds_situacao: "D3",
                               value: 100,
                               children: undefined
                           },
                           {
-                              name: "D4",
+                            ds_situacao: "D4",
                               value: 300,
                               children: undefined
                           }
@@ -97,20 +111,74 @@ export class Visual3Component implements OnInit {
               ]
           }
       ]
-    };
-    this.setData();
+    };*/
   }
 
+  onChangeTribunal(tribunal) {
+    console.log('Selecionou '+tribunal);
+    this.consultaGraus(tribunal);    
+  }
+
+  onChangeGrau(grau) {
+    console.log('Selecionou '+grau);
+    this.consultaFluxo(this.tribunal,grau);
+  }
+
+  consultaTribunal() {
+    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/tribunal")
+    .then(response => {
+      for (let obj of response.data) {
+        this.tribunais.push(new Tribunal(obj.sg_tribunal));
+      } 
+      console.log('Tribunais carregados')
+      if (this.tribunais.length == 1){
+        this.tribunal = this.tribunais[0].sg_tribunal;
+        this.consultaGraus(this.tribunal);
+      }
+      })
+    .catch(error => { console.error(error); })
+    .finally(() => {});
+    }
+
+    consultaGraus(tribunal: string) {
+        axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/grau/"+tribunal)
+        .then(response => {
+          for (let obj of response.data) {
+            this.graus.push(new Grau(obj.sg_grau));
+          } 
+          console.log('Graus carregados')
+          if (this.graus.length == 1){
+            this.grau = this.graus[0].sg_grau;
+            this.consultaFluxo(this.tribunal,this.grau);
+          }
+          })
+        .catch(error => { console.error(error); })
+        .finally(() => {});
+        }
+        
+        consultaFluxo(tribunal: string, grau: string) {
+            console.time("fluxo_arvore");
+            axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/fluxo/arvore/"+tribunal+"/"+grau+"/S")
+            .then(response => {
+              this.dataList = response.data
+              console.log('Arvore carregada')
+              console.timeEnd("fluxo_arvore");
+              this.setData();
+              })
+            .catch(error => { console.error(error); })
+            .finally(() => {});
+            }              
+
   setData() {
-    this.margin = { top: 20, right: 0, bottom: 30, left: 0 };
-    this.width = 960 - this.margin.left - this.margin.right;
-    this.height = 900 - this.margin.top - this.margin.bottom;
+    this.margin = { top: 10, right: 10, bottom: 10, left: 0 };
+    this.width = 3200 - this.margin.left - this.margin.right;
+    this.height = 1200 - this.margin.top - this.margin.bottom;
     this.svg = d3.select('div#tree').append('svg')
         .attr('width', this.width + this.margin.right + this.margin.left)
         .attr('height', this.height + this.margin.top + this.margin.bottom)
         .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
 
-    this.duration = 750;
+    this.duration = 150;
 
     // declares a tree layout and assigns the size
     this.tree = d3.tree()
@@ -120,12 +188,19 @@ export class Visual3Component implements OnInit {
     // Assigns parent, children, height, depth
     this.root = d3.hierarchy(this.dataList, (d) => { return d.children; });
     this.root.x0 = this.height / 2;
-    this.root.y0 = 10;
+    this.root.y0 = 0;
 
     // Collapse after the second level
-    this.root.children.forEach(collapse);
+    if (this.root.children){
+        this.root.children.forEach(collapseChild);
+    }
     this.updateChart(this.root);
 
+    function collapseChild(d) {
+        if (d.children) {
+            d.children.forEach(collapse);
+        }
+      }
     function collapse(d) {
        if (d.children) {
            d._children = d.children;
@@ -181,8 +256,8 @@ updateChart(source) {
         .attr('text-anchor', (d) => {
             return d.children || d._children ? 'end' : 'start';
         })
-        .style('font', '12px sans-serif')
-        .text((d) => { return d.data.name; });
+        .style('font', '14px sans-serif')
+        .text((d) => { return d.data.ds_situacao; });
 
     let nodeUpdate = nodeEnter.merge(node);
 
@@ -221,7 +296,7 @@ updateChart(source) {
         .attr('class', 'link')
         .style('fill', 'none')
         .style('stroke', '#ccc')
-        .style('stroke-width', '2px')
+        .style('stroke-width', '5px')
         .attr('d', function (d) {
             let o = { x: source.x0, y: source.y0 };
             return diagonal(o, o);

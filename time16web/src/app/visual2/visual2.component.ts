@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { Tribunal } from '../tribunal/tribunal';
 import { Grau } from '../grau/grau';
-import { No } from './no';
 import * as d3 from 'd3';
 import axios from "axios";
 
