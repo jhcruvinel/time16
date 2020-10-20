@@ -18,7 +18,7 @@ export class EventoComponent implements OnInit {
   }
 
   consultaEventos() {
-    axios.get("http://time16-sanjus.ddns.net:5002/eventos")
+    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/evento")
     .then(response => {
       //console.log(response);
       for (let obj of response.data) {

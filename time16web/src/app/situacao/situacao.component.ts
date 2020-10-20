@@ -11,14 +11,15 @@ export class SituacaoComponent implements OnInit {
 
   situacoes: Situacao[] = [];
   constructor() { 
-    this.consultaSituacoes();
+    
   }
 
   ngOnInit(): void {
+    this.consultaSituacao();
   }
 
-  consultaSituacoes() {
-    axios.get("http://time16-sanjus.ddns.net:5002/situacoes")
+  consultaSituacao() {
+    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/situacao")
     .then(response => {
       //console.log(response);
       for (let obj of response.data) {

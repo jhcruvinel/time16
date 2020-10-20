@@ -104,7 +104,7 @@ export class Visual1Component implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-         this.width = 720 - this.margin.right - this.margin.left;
+         this.width = 1000 - this.margin.right - this.margin.left;
          this.height = 640 - this.margin.top - this.margin.bottom;
          this.svg = d3.select("div#tree").append("svg")
              .attr("width", this.width + this.margin.right + this.margin.left)

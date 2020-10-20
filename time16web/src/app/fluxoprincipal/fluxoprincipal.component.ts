@@ -51,7 +51,7 @@ export class FluxoprincipalComponent implements OnInit {
     }
 
   consultaFluxoPrincipal() {
-    axios.get("http://time16-sanjus.ddns.net:5002/fluxo/principal")
+    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/fluxo")
     .then(response => {
       //console.log(response);
       for (let obj of response.data) {
