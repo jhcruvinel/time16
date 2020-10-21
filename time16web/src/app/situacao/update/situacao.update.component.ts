@@ -34,6 +34,7 @@ export class SituacaoUpdateComponent implements OnInit {
 
     let id_situacao: any = this.route.snapshot.paramMap.get('idSituacao');
     this.situacaoForm = new FormGroup({
+      id_situacao: new FormControl(),
       ds_situacao: new FormControl(),
       sg_tribunal: new FormControl(),
       cd_situacao: new FormControl(),
