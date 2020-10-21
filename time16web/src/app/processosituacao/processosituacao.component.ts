@@ -17,11 +17,14 @@ export class ProcessosituacaoComponent implements OnInit {
   durationInSeconds: number = 5;
   displayedColumns: string[] = [
     'nu_processo',
+    'cd_processo',
     'cd_classe',
-    'ds_situacao_origem',
-    'ds_evento',
-    'ds_situacao_destino',
-    'dt_ocorrencia',
+    'sg_tribunal',
+    'sg_grau',
+    'ds_orgao_julgador',
+    'ind_presidencia',
+    'dt_autuacao',
+    'operacao'
   ];
   dataSource = new MatTableDataSource<Processo>();
   consistente = '';
@@ -64,6 +67,37 @@ export class ProcessosituacaoComponent implements OnInit {
       .then((response) => {
         this.dataSource.data = response.data;
         //console.log(this.dataSource.data)
+      })
+      .catch((error) => {
+        this._snackBar.open(
+          ['Erro no processamento'].join(' - '),
+          'Fechar',
+          AppSettings.CONF_SNACK
+        );
+      })
+      .finally(() => {});
+  }
+
+  refresh(
+    cod_tribunal: string,
+    sg_grau: string,
+    cd_processo: string
+    ){
+    let json_data = JSON.stringify({"cod_tribunal": cod_tribunal, "sg_grau": sg_grau, "cd_processo": cd_processo});
+    console.log('Fazendo a carga do processo '+json_data);
+    axios
+      .post(
+        [AppSettings.API_ENDPOINT, 'v1.0/processo/carga'].join('/'),
+        json_data
+      )
+      .then((response) => {
+        this.dataSource.data = response.data;
+        //console.log(this.dataSource.data)
+        this._snackBar.open(
+          'Processo '+cd_processo+' carregado com sucesso',
+          'Fechar',
+          AppSettings.CONF_SNACK
+        );
       })
       .catch((error) => {
         this._snackBar.open(

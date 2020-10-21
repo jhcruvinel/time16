@@ -45,6 +45,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DetalheComponent } from './processosituacao/detalhe/detalhe.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     EventoCreateComponent,
     EventoUpdateComponent,
     DialogMovimentos,
-    DialogIncluirMovimentos
+    DialogIncluirMovimentos,
+    DetalheComponent
   ],
   imports: [
     BrowserModule,
