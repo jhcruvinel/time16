@@ -63,6 +63,12 @@ export class SituacaoCreateComponent implements OnInit {
           AppSettings.CONF_SNACK
         );
       }
+    } else {
+      this._snackBar.open(
+        ['Preencha todos os campos'].join(' - '),
+        'Fechar',
+        AppSettings.CONF_SNACK
+      );
     }
   }
 

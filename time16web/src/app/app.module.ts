@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ProcessosComponent } from './processos/processos.component';
 import { SituacaoComponent } from './situacao/situacao.component';
 import { HomeComponent } from './home/home.component';
-import { EventoComponent } from './evento/evento.component';
+import { EventoComponent, DialogMovimentos, DialogIncluirMovimentos } from './evento/evento.component';
 import { FluxoprincipalComponent } from './fluxoprincipal/fluxoprincipal.component';
 import { D3testComponent } from './d3test/d3test.component';
 import { Visual1Component } from './visual1/visual1.component';
@@ -35,6 +35,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ProcessosituacaoComponent } from './processosituacao/processosituacao.component';
+import { EventoCreateComponent } from './evento/create/evento.create.component';
+import { EventoUpdateComponent } from './evento/update/evento.update.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { ProcessosituacaoComponent } from './processosituacao/processosituacao.c
     SituacaoCreateComponent,
     SituacaoUpdateComponent,
     ConfirmDialogComponent,
-    ProcessosituacaoComponent
+    ProcessosituacaoComponent,
+    EventoCreateComponent,
+    EventoUpdateComponent,
+    DialogMovimentos,
+    DialogIncluirMovimentos
   ],
   imports: [
     BrowserModule,
@@ -76,7 +84,8 @@ import { ProcessosituacaoComponent } from './processosituacao/processosituacao.c
     MatSortModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatPaginatorModule
   ],
   entryComponents: [
     ConfirmDialogComponent

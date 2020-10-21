@@ -46,7 +46,7 @@ export class SituacaoUpdateComponent implements OnInit {
             ind_principal: obj.ind_principal,
             ind_ri: obj.ind_ri,
             fl_inicio: obj.fl_inicio,
-            fl_fim: obj.fl_fim
+            fl_fim: obj.fl_fim,
           });
         }
       })

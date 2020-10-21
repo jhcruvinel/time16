@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Vinculação de Movimento ao evento {{data.cd_evento}}</h1>
+<div mat-dialog-content>
+    <p>Informe o movimento da TPU (CNJ)</p>
+    <mat-form-field>
+        <mat-label>Código TPU do movimento</mat-label>
+        <input matInput [(ngModel)]="data.cd_tpu_movimento">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button [mat-dialog-close]="data.cd_tpu_movimento" cdkFocusInitial>Inserir</button>
+</div>
