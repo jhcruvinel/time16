@@ -38,7 +38,7 @@ export class DetalheComponent implements OnInit {
 
   ngOnInit(): void {
     this.cd_processo = this.route.snapshot.paramMap.get('cdProcesso');
-    console.log(this.cd_processo);
+    //console.log(this.cd_processo);
     this.consultaDetalhe();
   }
 
@@ -63,16 +63,13 @@ export class DetalheComponent implements OnInit {
   }
 
   consultaDetalhe() {
-    console.log(
-      [AppSettings.API_ENDPOINT, 'v1.0/situacao/processo', this.cd_processo].join('/')
-    );
     axios
       .get(
         [AppSettings.API_ENDPOINT, 'v1.0/situacao/processo', this.cd_processo].join('/')
       )
       .then((response) => {
         this.dataSource.data = response.data;
-        //console.log(this.dataSource.data)
+        
       })
       .catch((error) => {
         this._snackBar.open(

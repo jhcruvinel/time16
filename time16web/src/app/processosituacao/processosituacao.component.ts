@@ -57,9 +57,6 @@ export class ProcessosituacaoComponent implements OnInit {
   }
 
   consultaProcessoSituacao() {
-    console.log(
-      [AppSettings.API_ENDPOINT, 'v1.0/situacao', this.consistente].join('/')
-    );
     axios
       .get(
         [AppSettings.API_ENDPOINT, 'v1.0/situacao', this.consistente].join('/')
