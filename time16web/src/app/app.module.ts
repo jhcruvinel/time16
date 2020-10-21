@@ -41,6 +41,11 @@ import { EventoCreateComponent } from './evento/create/evento.create.component';
 import { EventoUpdateComponent } from './evento/update/evento.update.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [
@@ -89,7 +94,12 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSnackBarModule,
     MatDialogModule,
     MatRadioModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule,
+    MatTreeModule,
+    MatMenuModule,
+    MatStepperModule,
+    MatExpansionModule
   ],
   entryComponents: [
     ConfirmDialogComponent

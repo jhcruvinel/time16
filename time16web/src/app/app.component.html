@@ -1,41 +1,41 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/'">Home</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/elastic'">Resumo dos Dados</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/processosituacao'">Processos por Situação</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/grupo'">Grupos</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/situacao'">Situações</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/evento'">Eventos</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/fluxoprincipal'">Fluxo Principal</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/visual2'">Fluxo em Rede</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/visual3'">FLuxo em Árvore</a>
-      </li>
-      <li class="nav-item active" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="'/fluxoesperado'">Fluxo esperado</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<mat-toolbar color="primary">
+  <span>Time 16 - Desafio 2
+  </span>
+  <nav class="navbar navbar-expand-lg">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" routerLinkActive="active">
+          <button mat-button [routerLink]="'/'">Home</button>
+        </li>
+        <li>
+          <button mat-button [matMenuTriggerFor]="prepFluxo">
+            <mat-icon>settings_input_component</mat-icon> Preparação de fluxos
+          </button>
+          <mat-menu #prepFluxo="matMenu" yPosition="above">
+            <button mat-menu-item [routerLink]="'/situacao'">Situações</button>
+            <button mat-menu-item [routerLink]="'/evento'">Eventos e mapeamento de movimentos</button>
+            <button mat-menu-item [routerLink]="'/grupo'">Grupos de situações dos processos</button>
+            <button mat-menu-item [routerLink]="'/fluxoprincipal'">Transições esperadas do fluxo</button>
+            <button mat-menu-item [routerLink]="'/visual2'">Fluxo em Rede</button>
+            <button mat-menu-item [routerLink]="'/visual3'">Fluxo em Árvore</button>
+            <button mat-menu-item [routerLink]="'/fluxoesperado'">Fluxo esperado</button>
+          </mat-menu>
+        </li>
+        <li>
+          <button mat-button [matMenuTriggerFor]="dadosProcessos">
+            <mat-icon>playlist_add_check</mat-icon> Validação de Processos
+          </button>
+          <mat-menu #dadosProcessos="matMenu" yPosition="above">
+            <button mat-menu-item [routerLink]="'/elastic'">Dashboard - Kibana</button>
+            <button mat-menu-item [routerLink]="'/processosituacao'">Dashboard</button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</mat-toolbar>
 <router-outlet></router-outlet>

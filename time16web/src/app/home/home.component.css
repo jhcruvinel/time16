@@ -1,0 +1,40 @@
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.example-header {
+  background-color: #3f51b5;
+}
+.example-header-lucas {
+  background-image: url('/assets/img/lucas.png');
+  background-size: cover;
+}
+.example-header-rogelio {
+  background-image: url('/assets/img/unnamed.png');
+  background-size: cover;
+}
+.example-header-orair {
+  background-image: url('/assets/img/gustavo.png');
+  background-size: cover;
+}
+.example-header-cruvinel {
+  background-image: url('/assets/img/cruvinel.png');
+  background-size: cover;
+}
+.example-header-thiago {
+  background-image: url('/assets/img/thiago.png');
+  background-size: cover;
+}

@@ -1,6 +1,7 @@
 <mat-card>
-    <mat-card-title>Cadastro de Grupos</mat-card-title>
-    <form [formGroup]="grupoForm" (ngSubmit)="submitForm()" novalidate>
+    <mat-card-header>
+        <mat-card-title>Atualização de Grupos</mat-card-title>
+    </mat-card-header>    <form [formGroup]="grupoForm" (ngSubmit)="submitForm()" novalidate>
         <mat-form-field appearance="fill">
             <label>Código Grupo</label>
             <input matInput placeholder="Ex. CR" formControlName="cd_grupo" class="form-control">
