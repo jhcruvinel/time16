@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -20,41 +20,52 @@ export class SituacaoCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.situacaoForm = this.fb.group({
-      ds_situacao: [''],
-      sg_tribunal: 'TRT3',
-      cd_situacao: [''],
-      sg_grau: 'G2',
-      ind_principal: 'S',
-      ind_ri: 'S',
-      fl_inicio: 'N',
-      fl_fim: 'N',
+      ds_situacao: ['', Validators.required],
+      sg_tribunal: ['TRT3'],
+      cd_situacao: ['', Validators.required],
+      sg_grau: ['G2'],
+      ind_principal: ['S'],
+      ind_ri: ['S'],
+      fl_inicio: ['N'],
+      fl_fim: ['N'],
     });
   }
 
   salvarSituacao(values) {
-    let json_data = JSON.stringify(values);
-    console.log(json_data);
-    try {
-      axios
-        .post([AppSettings.API_ENDPOINT, 'v1.0/situacao'].join('/'), json_data)
-        .then((response) => {
-          this._snackBar.open(
-            'Registro Inserido com sucesso!',
-            'Fechar',
-            AppSettings.CONF_SNACK
-          );
-        })
-        .catch((error) => {
-          this._snackBar.open(
-            ['Erro no processamento'].join(' - '),
-            'Fechar',
-            AppSettings.CONF_SNACK
-          );
-        })
-        .finally(() => {});
-    } catch {
+    if (this.situacaoForm.status === 'VALID') {
+      let json_data = JSON.stringify(values);
+      console.log(json_data);
+      try {
+        axios
+          .post(
+            [AppSettings.API_ENDPOINT, 'v1.0/situacao'].join('/'),
+            json_data
+          )
+          .then((response) => {
+            this._snackBar.open(
+              'Registro Inserido com sucesso!',
+              'Fechar',
+              AppSettings.CONF_SNACK
+            );
+          })
+          .catch((error) => {
+            this._snackBar.open(
+              ['Erro no processamento'].join(' - '),
+              'Fechar',
+              AppSettings.CONF_SNACK
+            );
+          })
+          .finally(() => {});
+      } catch {
+        this._snackBar.open(
+          ['Erro no processamento'].join(' - '),
+          'Fechar',
+          AppSettings.CONF_SNACK
+        );
+      }
+    } else {
       this._snackBar.open(
-        ['Erro no processamento'].join(' - '),
+        ['Preencha todos os campos'].join(' - '),
         'Fechar',
         AppSettings.CONF_SNACK
       );

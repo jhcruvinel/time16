@@ -7,6 +7,8 @@ import { SituacaoUpdateComponent } from './situacao/update/situacao.update.compo
 import { GrupoComponent } from './grupo/grupo.component';
 import { GrupoCreateComponent } from './grupo/create/grupo.create.component';
 import { GrupoUpdateComponent } from './grupo/update/grupo.update.component';
+import { EventoCreateComponent } from './evento/create/evento.create.component';
+import { EventoUpdateComponent } from './evento/update/evento.update.component';
 import { EventoComponent } from './evento/evento.component';
 import { FluxoprincipalComponent } from './fluxoprincipal/fluxoprincipal.component';
 import { D3testComponent } from './d3test/d3test.component';
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'grupo/create', component: GrupoCreateComponent },
   { path: 'grupo/update/:idGrupo', component: GrupoUpdateComponent },
   { path: 'evento', component: EventoComponent },
+  { path: 'evento/create', component: EventoCreateComponent },
+  { path: 'evento/update/:idEvento', component: EventoUpdateComponent },  
   { path: 'fluxoprincipal', component: FluxoprincipalComponent },
   { path: 'd3test', component: D3testComponent },
   { path: 'visual1', component: Visual1Component },
