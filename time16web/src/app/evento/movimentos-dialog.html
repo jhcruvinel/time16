@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>Movimentos Relacionados ao evento</mat-card-title>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="cd_tpu_movimento">
+            <th mat-header-cell *matHeaderCellDef>Código Movimento</th>
+            <td mat-cell *matCellDef="let element"> {{element.cd_tpu_movimento}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="operacao">
+            <th mat-header-cell *matHeaderCellDef>Operações</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="basic" aria-label="Remover"
+                    (click)="excluirMovimento(element.id_movimento)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-card>

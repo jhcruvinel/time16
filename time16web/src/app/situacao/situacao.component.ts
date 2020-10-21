@@ -14,7 +14,6 @@ import { AppSettings } from '../app-settings';
   styleUrls: ['./situacao.component.css'],
 })
 export class SituacaoComponent implements OnInit {
-  durationInSeconds: number = 5;
   displayedColumns: string[] = ['cd_situacao', 'ds_situacao', 'operacao'];
   dataSource = new MatTableDataSource<Situacao>();
 
@@ -30,6 +29,15 @@ export class SituacaoComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   excluir(id_situacao) {
@@ -53,7 +61,9 @@ export class SituacaoComponent implements OnInit {
           })
           .catch((error) => {
             this._snackBar.open(
-              ['O registro possui informações relacionadas e por isso não pode ser excluído'].join(' - '),
+              [
+                'O registro possui informações relacionadas e por isso não pode ser excluído',
+              ].join(' - '),
               'Fechar',
               AppSettings.CONF_SNACK
             );

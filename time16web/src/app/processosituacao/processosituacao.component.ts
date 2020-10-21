@@ -6,17 +6,23 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppSettings } from '../app-settings';
-
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-processosituacao',
   templateUrl: './processosituacao.component.html',
-  styleUrls: ['./processosituacao.component.css']
+  styleUrls: ['./processosituacao.component.css'],
 })
 export class ProcessosituacaoComponent implements OnInit {
-
   durationInSeconds: number = 5;
-  displayedColumns: string[] = ['nu_processo', 'cd_classe', 'ds_situacao_origem', 'ds_evento', 'ds_situacao_destino', 'dt_ocorrencia'];
+  displayedColumns: string[] = [
+    'nu_processo',
+    'cd_classe',
+    'ds_situacao_origem',
+    'ds_evento',
+    'ds_situacao_destino',
+    'dt_ocorrencia',
+  ];
   dataSource = new MatTableDataSource<Processo>();
   consistente = '';
 
@@ -26,21 +32,35 @@ export class ProcessosituacaoComponent implements OnInit {
     //this.consultaProcessoSituacao();
   }
 
-  onChangeConsistente(){
+  onChangeConsistente() {
     this.dataSource.data = [];
     this.consultaProcessoSituacao();
   }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   consultaProcessoSituacao() {
-    console.log([AppSettings.API_ENDPOINT, 'v1.0/situacao', this.consistente].join('/'))
+    console.log(
+      [AppSettings.API_ENDPOINT, 'v1.0/situacao', this.consistente].join('/')
+    );
     axios
-      .get([AppSettings.API_ENDPOINT, 'v1.0/situacao', this.consistente].join('/'))
+      .get(
+        [AppSettings.API_ENDPOINT, 'v1.0/situacao', this.consistente].join('/')
+      )
       .then((response) => {
         this.dataSource.data = response.data;
         //console.log(this.dataSource.data)
@@ -54,6 +74,4 @@ export class ProcessosituacaoComponent implements OnInit {
       })
       .finally(() => {});
   }
-
-
 }
