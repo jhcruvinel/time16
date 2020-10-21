@@ -1,1 +1,35 @@
-<p>grupo works!</p>
+<mat-card>
+    <mat-card-title>Grupos</mat-card-title>
+</mat-card>
+<mat-card>
+    <button mat-flat-button color="primary" aria-label="Cadastrar um novo Grupo" [routerLink]="'/grupo/create/'">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-card>
+<mat-card>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <ng-container matColumnDef="cd_grupo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
+            <td mat-cell *matCellDef="let element"> {{element.cd_grupo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ds_grupo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
+            <td mat-cell *matCellDef="let element"> {{element.ds_grupo}} </td>
+        </ng-container>
+        <ng-container matColumnDef="operacao">
+            <th mat-header-cell *matHeaderCellDef>Operações</th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-flat-button color="basic" aria-label="Remover" [routerLink]="['/grupo/update/', element.id_grupo]">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <span class="sep"></span>
+                <button mat-flat-button color="basic" aria-label="Remover" (click)="excluir(element.id_grupo)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-card>

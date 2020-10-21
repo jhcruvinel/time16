@@ -17,6 +17,8 @@ import { Visual3Component } from './visual3/visual3.component';
 import { TribunalComponent } from './tribunal/tribunal.component';
 import { GrauComponent } from './grau/grau.component';
 import { GrupoComponent } from './grupo/grupo.component';
+import { GrupoCreateComponent } from './grupo/create/grupo.create.component';
+import { GrupoUpdateComponent } from './grupo/update/grupo.update.component';
 import { SituacaoCreateComponent } from './situacao/create/situacao.create.component';
 import { SituacaoUpdateComponent } from './situacao/update/situacao.update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -57,6 +59,8 @@ import { MatTreeModule } from '@angular/material/tree';
     TribunalComponent,
     GrauComponent,
     GrupoComponent,
+    GrupoCreateComponent,
+    GrupoUpdateComponent,
     SituacaoCreateComponent,
     SituacaoUpdateComponent,
     ConfirmDialogComponent,

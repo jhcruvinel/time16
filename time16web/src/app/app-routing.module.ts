@@ -4,6 +4,9 @@ import { HomeComponent } from './home/home.component';
 import { SituacaoComponent } from './situacao/situacao.component';
 import { SituacaoCreateComponent } from './situacao/create/situacao.create.component';
 import { SituacaoUpdateComponent } from './situacao/update/situacao.update.component';
+import { GrupoComponent } from './grupo/grupo.component';
+import { GrupoCreateComponent } from './grupo/create/grupo.create.component';
+import { GrupoUpdateComponent } from './grupo/update/grupo.update.component';
 import { EventoCreateComponent } from './evento/create/evento.create.component';
 import { EventoUpdateComponent } from './evento/update/evento.update.component';
 import { EventoComponent } from './evento/evento.component';
@@ -24,6 +27,9 @@ const routes: Routes = [
   { path: 'situacao', component: SituacaoComponent },
   { path: 'situacao/create', component: SituacaoCreateComponent },
   { path: 'situacao/update/:idSituacao', component: SituacaoUpdateComponent },
+  { path: 'grupo', component: GrupoComponent },
+  { path: 'grupo/create', component: GrupoCreateComponent },
+  { path: 'grupo/update/:idGrupo', component: GrupoUpdateComponent },
   { path: 'evento', component: EventoComponent },
   { path: 'evento/create', component: EventoCreateComponent },
   { path: 'evento/update/:idEvento', component: EventoUpdateComponent },  

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -33,6 +33,16 @@ export class SituacaoUpdateComponent implements OnInit {
     });
 
     let id_situacao: any = this.route.snapshot.paramMap.get('idSituacao');
+    this.situacaoForm = new FormGroup({
+      ds_situacao: new FormControl(),
+      sg_tribunal: new FormControl(),
+      cd_situacao: new FormControl(),
+      sg_grau: new FormControl(),
+      ind_principal: new FormControl(),
+      ind_ri: new FormControl(),
+      fl_inicio: new FormControl(),
+      fl_fim: new FormControl()
+   });
     axios
       .get([AppSettings.API_ENDPOINT, 'v1.0/situacao', id_situacao].join('/'))
       .then((response) => {
