@@ -45,6 +45,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FluxoPrincipalCreateComponent } from './fluxoprincipal/create/fluxoprincipal.create.component'
 import { DetalheComponent } from './processosituacao/detalhe/detalhe.component';
 
 
@@ -75,6 +76,7 @@ import { DetalheComponent } from './processosituacao/detalhe/detalhe.component';
     EventoUpdateComponent,
     DialogMovimentos,
     DialogIncluirMovimentos,
+    FluxoPrincipalCreateComponent,
     DetalheComponent
   ],
   imports: [

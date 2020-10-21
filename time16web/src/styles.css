@@ -1,4 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.mat-input-wrapper {
+  width: 400px !important;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+table {
+  width: 100%;
+}
+.sep {
+  margin: 1%;
+}
