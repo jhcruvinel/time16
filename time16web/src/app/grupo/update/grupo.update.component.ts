@@ -4,13 +4,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppSettings } from '../../app-settings';
+
 @Component({
   selector: 'app-update',
-  templateUrl: './situacao.update.component.html',
-  styleUrls: ['./situacao.update.component.css'],
+  templateUrl: './grupo.update.component.html',
+  styleUrls: ['./grupo.update.component.css']
 })
-export class SituacaoUpdateComponent implements OnInit {
-  situacaoForm: FormGroup;
+export class GrupoUpdateComponent implements OnInit {
+  grupoForm: FormGroup;
 
   constructor(
     public fb: FormBuilder,
@@ -20,30 +21,24 @@ export class SituacaoUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id_situacao: any = this.route.snapshot.paramMap.get('idSituacao');
-    this.situacaoForm = new FormGroup({
-      ds_situacao: new FormControl(),
+    let id_grupo: any = this.route.snapshot.paramMap.get('idGrupo');
+    this.grupoForm = new FormGroup({
+      id_grupo: new FormControl(),
+      cd_grupo: new FormControl(),
+      ds_grupo: new FormControl(),
       sg_tribunal: new FormControl(),
-      cd_situacao: new FormControl(),
-      sg_grau: new FormControl(),
-      ind_principal: new FormControl(),
-      ind_ri: new FormControl(),
-      fl_inicio: new FormControl(),
-      fl_fim: new FormControl()
+      sg_grau: new FormControl()
    });
     axios
-      .get([AppSettings.API_ENDPOINT, 'v1.0/situacao', id_situacao].join('/'))
+      .get([AppSettings.API_ENDPOINT, 'v1.0/grupo', id_grupo].join('/'))
       .then((response) => {
         for (let obj of response.data) {
-          this.situacaoForm = this.fb.group({
-            ds_situacao: obj.ds_situacao,
-            sg_tribunal: 'TRT3',
-            cd_situacao: obj.cd_situacao,
-            sg_grau: obj.sg_grau,
-            ind_principal: 'S',
-            ind_ri: 'S',
-            fl_inicio: 'N',
-            fl_fim: 'N',
+          this.grupoForm = this.fb.group({
+            id_grupo: id_grupo,
+            cd_grupo: obj.cd_grupo,
+            ds_grupo: obj.ds_grupo,
+            sg_tribunal: obj.sg_tribunal,
+            sg_grau: obj.sg_grau
           });
         }
       })
@@ -51,7 +46,7 @@ export class SituacaoUpdateComponent implements OnInit {
         this._snackBar.open(
           [
             'Erro no processamento, não foi possível localizar a situação',
-            id_situacao,
+            id_grupo,
           ].join(' - '),
           'Fechar',
           AppSettings.CONF_SNACK
@@ -59,12 +54,13 @@ export class SituacaoUpdateComponent implements OnInit {
       });
   }
 
-  salvarSituacao(values) {
+  salvarGrupo(values) {
+    let id_grupo: any = this.route.snapshot.paramMap.get('idGrupo');
     let json_data = JSON.stringify(values);
     console.log(json_data);
     try {
       axios
-        .post([AppSettings.API_ENDPOINT, 'v1.0/situacao'].join('/'), json_data)
+        .put([AppSettings.API_ENDPOINT, 'v1.0/grupo', id_grupo].join('/'), json_data)
         .then((response) => {
           this._snackBar.open(
             'Registro Inserido com sucesso!',
@@ -90,6 +86,6 @@ export class SituacaoUpdateComponent implements OnInit {
   }
 
   submitForm() {
-    this.salvarSituacao(this.situacaoForm.value);
+    this.salvarGrupo(this.grupoForm.value);
   }
 }
