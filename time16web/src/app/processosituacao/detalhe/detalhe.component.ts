@@ -5,16 +5,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
-import { AppSettings } from '../../app-settings';
+import { AppSettings, formatNumeroProcesso } from '../../app-settings';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
-import {Location} from '@angular/common';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalhe',
   templateUrl: './detalhe.component.html',
-  styleUrls: ['./detalhe.component.css']
+  styleUrls: ['./detalhe.component.css'],
 })
 export class DetalheComponent implements OnInit {
   durationInSeconds: number = 5;
@@ -24,17 +23,18 @@ export class DetalheComponent implements OnInit {
     'dt_ocorrencia',
     'ds_situacao',
     'ds_evento',
-    'ds_situacao_2'
+    'ds_situacao_2',
   ];
   dataSource = new MatTableDataSource<Detalhe>();
   consistente = '';
 
   constructor(
     private _location: Location,
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private _snackBar: MatSnackBar) {}
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.cd_processo = this.route.snapshot.paramMap.get('cdProcesso');
@@ -48,11 +48,14 @@ export class DetalheComponent implements OnInit {
   back() {
     this._location.back();
   }
-    
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
+  formataNumeroProcesso(processo) {
+    return formatNumeroProcesso(processo);
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -65,11 +68,14 @@ export class DetalheComponent implements OnInit {
   consultaDetalhe() {
     axios
       .get(
-        [AppSettings.API_ENDPOINT, 'v1.0/situacao/processo', this.cd_processo].join('/')
+        [
+          AppSettings.API_ENDPOINT,
+          'v1.0/situacao/processo',
+          this.cd_processo,
+        ].join('/')
       )
       .then((response) => {
         this.dataSource.data = response.data;
-        
       })
       .catch((error) => {
         this._snackBar.open(
@@ -80,5 +86,4 @@ export class DetalheComponent implements OnInit {
       })
       .finally(() => {});
   }
-
 }

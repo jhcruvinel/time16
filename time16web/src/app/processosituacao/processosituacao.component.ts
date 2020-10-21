@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AppSettings } from '../app-settings';
+import { AppSettings, formatNumeroProcesso } from '../app-settings';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
@@ -24,15 +24,15 @@ export class ProcessosituacaoComponent implements OnInit {
     'ds_orgao_julgador',
     'ind_presidencia',
     'dt_autuacao',
-    'operacao'
+    'operacao',
   ];
   dataSource = new MatTableDataSource<Processo>();
-  consistente = '';
+  consistente = 'N';
 
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    //this.consultaProcessoSituacao();
+    this.consultaProcessoSituacao();
   }
 
   onChangeConsistente() {
@@ -44,6 +44,7 @@ export class ProcessosituacaoComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -75,13 +76,17 @@ export class ProcessosituacaoComponent implements OnInit {
       .finally(() => {});
   }
 
-  refresh(
-    cod_tribunal: string,
-    sg_grau: string,
-    cd_processo: string
-    ){
-    let json_data = JSON.stringify({"cod_tribunal": cod_tribunal, "sg_grau": sg_grau, "cd_processo": cd_processo});
-    console.log('Fazendo a carga do processo '+json_data);
+  formatProcesso(processo) {
+    return formatNumeroProcesso(processo);
+  }
+
+  refresh(cod_tribunal: string, sg_grau: string, cd_processo: string) {
+    let json_data = JSON.stringify({
+      cod_tribunal: cod_tribunal,
+      cod_instancia: sg_grau,
+      cd_processo: cd_processo,
+    });
+    console.log('Fazendo a carga do processo ' + json_data);
     axios
       .post(
         [AppSettings.API_ENDPOINT, 'v1.0/processo/carga'].join('/'),
@@ -91,7 +96,7 @@ export class ProcessosituacaoComponent implements OnInit {
         this.dataSource.data = response.data;
         //console.log(this.dataSource.data)
         this._snackBar.open(
-          'Processo '+cd_processo+' carregado com sucesso',
+          'Processo ' + cd_processo + ' carregado com sucesso',
           'Fechar',
           AppSettings.CONF_SNACK
         );
