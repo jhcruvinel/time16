@@ -1,116 +1,128 @@
 <img src="/../assets/img/back.png" class="img-fluid" alt="Responsive image">
-
-<h2  class="text-center">Time 16 - Desafio 2</h2>
-
-<div id="accordion">
-    <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Descrição do problema
-            </button>
-          </h5>
+<mat-card>
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          O problema
+        </mat-panel-title>
+        <mat-panel-description>
+          Descrição do problema
+          <mat-icon>report_problem</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <div class="list-group">
+          <mat-card-header>
+            <mat-card-title>Quantidade significativa dos processos apresentam movimentações inconsistentes com o fluxo
+              esperado.
+            </mat-card-title>
+          </mat-card-header>
+          <button type="button" class="list-group-item list-group-item-action">
+            <ul>
+              <li>Causa: Os sistemas Legado e PJe não possuem travas para permitir somente o lançamento de movimentos
+                que impulsionem o processo seguindo o fluxo correto.</li>
+              <li>Consequências: Isso pode acarretar informações estatísticas errôneas, bem como aumentar o tempo de
+                tramitação do processo e permitir situações como as seguintes:</li>
+              <ul>
+                <li>Processos arquivado definitivamente com valores depositados em conta;</li>
+                <li>Processos enviados a instâncias superiores ou inferiores que ainda figuram como pendentes de baixa
+                  no 2º Grau;</li>
+                <li>Processos com execução iniciada e sem sentença;</li>
+                <li>Processos arquivados definitivamente com execução sem extinção;</li>
+                <li>Processos arquivados definitivamente com recursos ainda pendentes;</li>
+                <li>Processos arquivados definitivamente e sem sentença;</li>
+                <li>As informações erradas são enviadas ao Datajud.</li>
+              </ul>
+            </ul>
+          </button>
         </div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body">
-              <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action active">
-                  Quantidade significativa dos processos apresentam movimentações inconsistentes com o fluxo esperado.
-                </button>
-                <button type="button" class="list-group-item list-group-item-action">
-                  <ul>
-                    <li>Causa: Os sistemas Legado e PJe não possuem travas para permitir somente o lançamento de movimentos que impulsionem o processo seguindo o fluxo correto.</li>
-                    <li>Consequências: Isso pode acarretar informações estatísticas errôneas, bem como aumentar o tempo de tramitação do processo e permitir situações como as seguintes:</li>
-                    <ul>
-                      <li>Processos arquivado definitivamente com valores depositados em conta;</li>
-                      <li>Processos enviados a instâncias superiores ou inferiores que ainda figuram como pendentes de baixa no 2º Grau;</li>
-                      <li>Processos com execução iniciada e sem sentença;</li>
-                      <li>Processos arquivados definitivamente com execução sem extinção;</li>
-                      <li>Processos arquivados definitivamente com recursos ainda pendentes;</li>
-                      <li>Processos arquivados definitivamente e sem sentença;</li>
-                      <li>As informações erradas são enviadas ao Datajud.</li>
-                    </ul>
-                    </ul>
-                </button>
-              </div>
-            </div>
+      </mat-card>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          A Solução
+        </mat-panel-title>
+        <mat-panel-description>
+          Solução Proposta
+          <mat-icon>stars</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <div class="list-group">
+          <mat-card-header>
+            <mat-card-title>Quantidade significativa dos processos apresentam movimentações inconsistentes com o fluxo
+              esperado.
+            </mat-card-title>
+          </mat-card-header>
+        </div>
+      </mat-card>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          O Time
+        </mat-panel-title>
+        <mat-panel-description>
+          ...
+          <mat-icon>people</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-card>
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-lucas"></div>
+            <mat-card-title>Lucas Bibiano</mat-card-title>
+            <mat-card-subtitle>Cargo: TI. Servidor do TST</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-footer">
+            <small class="text-muted">E-mail: </small>
           </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Solução Proposta
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                  Descrição
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header" id="headingThree">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Equipe
-                    </button>
-                  </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                  <div class="card-body">
-                    <div class="card-group">
-                        <div class="card">
-                          <img class="card-img-top" src="/../assets/img/lucas.png" alt="Card image cap">
-                          <div class="card-body">
-                            <h3 class="card-title">Lucas Bibiano</h3>
-                            <p class="card-text">Cargo: TI. Servidor do TRT3</p>
-                          </div>
-                          <div class="card-footer">
-                            <small class="text-muted">E-mail: </small>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="/../assets/img/unnamed.png" alt="Card image cap">
-                          <div class="card-body">
-                            <h3 class="card-title">Rogélio Bar Neto</h3>
-                            <p class="card-text">Cargo: Negócio. Servidor do TRT3</p>
-                          </div>
-                          <div class="card-footer">
-                            <small class="text-muted">E-mail: </small>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="/../assets/img/gustavo.png" alt="Card image cap">
-                          <div class="card-body">
-                            <h3 class="card-title">Gustavo Orair</h3>
-                            <p class="card-text">Cargo: TI. Servidor do TST</p>
-                          </div>
-                          <div class="card-footer">
-                            <small class="text-muted">E-mail: </small>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="/../assets/img/thiago.png" alt="Card image cap">
-                          <div class="card-body">
-                            <h3 class="card-title">Thiago Alencar Gomes</h3>
-                            <p class="card-text">Cargo: TI. Cientista da Computação e Pós Graduado em Administração Pública</p>
-                          </div>
-                          <div class="card-footer">
-                            <small class="text-muted">E-mail: </small>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <img class="card-img-top" src="/../assets/img/cruvinel.png" alt="Card image cap">
-                          <div class="card-body">
-                            <h3 class="card-title">José Humberto Cruvinel</h3>
-                            <p class="card-text">Cargo: TI. Servidor do TRT3, Mestre e professor Universitário.</p>
-                          </div>
-                          <div class="card-footer">
-                            <small class="text-muted">E-mail: josehcr@trt3.jus.br</small>
-                          </div>
-                        </div>    
-                      </div>
-                    
-                  </div>
-                </div>
-            </div>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-rogelio"></div>
+            <mat-card-title>Rogélio Bar Neto</mat-card-title>
+            <mat-card-subtitle>Cargo: Negócio. Servidor do TRT3</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-footer">
+            <small class="text-muted">E-mail: </small>
+          </div>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-orair"></div>
+            <mat-card-title>Gustavo Orair</mat-card-title>
+            <mat-card-subtitle>Cargo: TI. Servidor do TST</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-footer">
+            <small class="text-muted">E-mail: </small>
+          </div>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-thiago"></div>
+            <mat-card-title>Thiago Alencar Gomes</mat-card-title>
+            <mat-card-subtitle>Cargo: TI. Cientista da Computação e Pós Graduado em Administração Pública
+            </mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-footer">
+            <small class="text-muted">E-mail: </small>
+          </div>
+        </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-cruvinel"></div>
+            <mat-card-title>José Humberto Cruvinel</mat-card-title>
+            <mat-card-subtitle>Cargo: TI. Servidor do TRT3, Mestre e professor Universitário.</mat-card-subtitle>
+          </mat-card-header>
+          <div class="card-footer">
+            <small class="text-muted">E-mail: josehcr@trt3.jus.br</small>
+          </div>
+        </mat-card>
+      </mat-card>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

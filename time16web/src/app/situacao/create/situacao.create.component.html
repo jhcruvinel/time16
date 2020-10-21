@@ -1,9 +1,11 @@
 <mat-card>
-    <mat-card-title>Cadastro de Situações</mat-card-title>
+    <mat-card-header>
+        <mat-card-title>Cadastro de Situações</mat-card-title>
+    </mat-card-header>
     <form [formGroup]="situacaoForm" (ngSubmit)="submitForm()" novalidate>
         <mat-form-field appearance="fill">
             <label>Código Situação</label>
-            <input matInput placeholder="Ex. CCDD" formControlName="cd_situacao" class="form-control">            
+            <input matInput placeholder="Ex. CCDD" formControlName="cd_situacao" class="form-control">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <label>Descrição da Situação</label>

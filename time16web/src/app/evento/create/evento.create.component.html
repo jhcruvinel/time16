@@ -1,5 +1,7 @@
 <mat-card>
-    <mat-card-title>Cadastro de Eventos</mat-card-title>
+    <mat-card-header>
+        <mat-card-title>Cadastro de Eventos</mat-card-title>
+    </mat-card-header>
     <form [formGroup]="eventoForm" (ngSubmit)="submitForm()" novalidate>
         <mat-form-field appearance="fill">
             <label>Código Evento</label>
@@ -27,15 +29,15 @@
                 <mat-icon>save</mat-icon>
             </button>
             <span class="sep"></span>
-                <button [hidden]="!id_evento" mat-flat-button color="primary" title="Adicionar Movimentos"
-                    aria-label="Vincular movimentos" type="button" (click)="adicionarMovimentos()">
-                    <mat-icon>add</mat-icon>
-                </button>
-                <span class="sep"></span>
-                <button [hidden]="!id_evento" mat-flat-button color="primary" title="Adicionar Movimentos"
-                    aria-label="Visualizar movimentos" type="button" (click)="exibirMovimentos()">
-                    <mat-icon>line_weight</mat-icon>
-                </button>
+            <button [hidden]="!id_evento" mat-flat-button color="primary" title="Adicionar Movimentos"
+                aria-label="Vincular movimentos" type="button" (click)="adicionarMovimentos()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <span class="sep"></span>
+            <button [hidden]="!id_evento" mat-flat-button color="primary" title="Adicionar Movimentos"
+                aria-label="Visualizar movimentos" type="button" (click)="exibirMovimentos()">
+                <mat-icon>line_weight</mat-icon>
+            </button>
         </div>
     </form>
 </mat-card>

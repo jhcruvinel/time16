@@ -1,6 +1,7 @@
 <mat-card>
-    <mat-card-title>Lista de Processos - Escolha a situação abaixo:</mat-card-title>
-    <br>
+    <mat-card-header>
+        <mat-card-title>Lista de Processos - Escolha a situação abaixo:</mat-card-title>
+    </mat-card-header>
     <mat-radio-group aria-label="Selecione" (change)="onChangeConsistente()" [(ngModel)]="consistente">
         <mat-radio-button value="N">Inconsistentes</mat-radio-button>
         <mat-radio-button value="S">Consistentes</mat-radio-button>
