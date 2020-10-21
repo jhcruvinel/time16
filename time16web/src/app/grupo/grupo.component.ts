@@ -66,7 +66,6 @@ export class GrupoComponent implements OnInit {
     axios
       .get(this.endpoint)
       .then((response) => {
-        console.log(response.data);
         this.dataSource.data = response.data;
       })
       .catch((error) => {

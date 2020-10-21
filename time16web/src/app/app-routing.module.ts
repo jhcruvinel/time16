@@ -19,6 +19,7 @@ import { ElasticComponent } from './elastic/elastic.component';
 import { FluxoesperadoComponent } from './fluxoesperado/fluxoesperado.component';
 import { ProcessosituacaoComponent } from './processosituacao/processosituacao.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FluxoPrincipalCreateComponent } from './fluxoprincipal/create/fluxoprincipal.create.component'
 
 
 const routes: Routes = [
@@ -34,6 +35,8 @@ const routes: Routes = [
   { path: 'evento/create', component: EventoCreateComponent },
   { path: 'evento/update/:idEvento', component: EventoUpdateComponent },  
   { path: 'fluxoprincipal', component: FluxoprincipalComponent },
+  { path: 'fluxoprincipal/create', component: FluxoPrincipalCreateComponent },
+  { path: 'fluxoprincipal/update/:idFluxo', component: GrupoUpdateComponent },  
   { path: 'd3test', component: D3testComponent },
   { path: 'visual1', component: Visual1Component },
   { path: 'visual2', component: Visual2Component },

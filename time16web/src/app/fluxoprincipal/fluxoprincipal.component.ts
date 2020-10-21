@@ -1,139 +1,106 @@
-import { Component, OnInit } from '@angular/core';
-import { ParteFluxo } from './fluxo'
-import axios from "axios";
-import { Tribunal } from '../tribunal/tribunal';
-import { Grau } from '../grau/grau';
-import { Situacao } from '../situacao/situacao'
-import * as d3 from 'd3';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { ParteFluxo } from './fluxo';
+import axios from 'axios';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppSettings } from '../app-settings';
+import { MatPaginator } from '@angular/material/paginator';
+import { Visual3Component } from '../visual3/visual3.component'
+
 
 @Component({
   selector: 'app-fluxoprincipal',
   templateUrl: './fluxoprincipal.component.html',
-  styleUrls: ['./fluxoprincipal.component.css']
+  styleUrls: ['./fluxoprincipal.component.css'],
 })
 export class FluxoprincipalComponent implements OnInit {
-  situacoes: Situacao[] = [];
+  displayedColumns: string[] = [
+    'situacao_origem',
+    'evento',
+    'situacao_destino',
+    'consistente',
+    'efetiva',
+    'grupo',
+    'operacao',
+  ];
   fluxoprincipal: ParteFluxo[] = [];
-  tribunais: Tribunal[] = [];
-  tribunal: string;
-  grau: string;
-  graus: Grau[] = [];
-  onstructor() {
-    this.consultaFluxoPrincipal();
-   }
 
+  endpoint: string = [AppSettings.API_ENDPOINT, 'v1.0/fluxo'].join('/');
+  dataSource = new MatTableDataSource<ParteFluxo>();
+  constructor(public dialog: MatDialog, private _snackBar: MatSnackBar) {}
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnInit(): void {
-    this.consultaTribunal();
-    this.consultaSituacoes();
+    this.consultaFluxoPrincipal();
   }
-
-  onChangeTribunal(tribunal) {
-    console.log('Selecionou '+tribunal);
-    this.consultaGraus(tribunal);    
-  }
-
-  onChangeGrau(grau) {
-    console.log('Selecionou '+grau);
-  }
-
-  consultaTribunal() {
-    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/tribunal")
-    .then(response => {
-      for (let obj of response.data) {
-        this.tribunais.push(new Tribunal(obj.sg_tribunal));
-      } 
-      console.log('Tribunais carregados')
-      if (this.tribunais.length == 1){
-        this.tribunal = this.tribunais[0].sg_tribunal;
-        this.consultaGraus(this.tribunal);
-      }
-      })
-    .catch(error => { console.error(error); })
-    .finally(() => {});
-    }
-
-  atualizar(){}
-
-
-  consultaGraus(tribunal: string) {
-    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/grau/"+tribunal)
-    .then(response => {
-      for (let obj of response.data) {
-        this.graus.push(new Grau(obj.sg_grau));
-      } 
-      console.log('Graus carregados')
-      if (this.graus.length == 1){
-        this.grau = this.graus[0].sg_grau;
-        this.consultaFluxoPrincipal();
-      }
-      })
-    .catch(error => { console.error(error); })
-    .finally(() => {});
-    }
-
-
-  consultaSituacoes() {
-    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/situacao")
-    .then(response => {
-      //console.log(response);
-      for (let obj of response.data) {
-        //console.log(obj);
-        this.situacoes.push(new Situacao(
-            obj.ind_principal,
-            obj.ds_situacao,
-            obj.sg_tribunal,
-            obj.ind_ri,
-            obj.id_situacao,
-            obj.cd_situacao,
-            obj.sg_grau));
-      }
-      console.log('Situacoes carregadas')
-      })
-    .catch(error => {
-        console.error(error);
-      })
-    .finally(() => {});
-    }
-
-    getDsSituacao(id_situacao: number){
-      if (this.situacoes){
-        return this.situacoes.find(x => x.id_situacao == id_situacao).ds_situacao;
-      }
-      return "";
-    }
+  atualizar() {}
 
   consultaFluxoPrincipal() {
-    axios.get("http://time16-sanjus.ddns.net:5002/api/v1.0/fluxo")
-    .then(response => {
-      //console.log(response);
-      for (let obj of response.data) {
-        //console.log(obj);
-        if (!this.tribunais.includes(obj.sg_tribunal)){
-          console.log('adicionando '+obj.sg_tribunal)
-          this.tribunais.push(obj.sg_tribunal);
-        }
-        this.fluxoprincipal.push(new ParteFluxo(
-          obj.id_evento,
-          obj.ind_consistente,
-          obj.id_fluxo_movimento,
-          obj.ind_fluxo_ri,
-          obj.sg_tribunal,
-          obj.id_situacao_destino,
-          obj.id_situacao_origem,
-          '',
-          obj.ind_efetiva,
-          obj.id_grupo,
-          obj.sg_grau));
-      }
-      console.log('Partes do fluxo principal carregadas')
+    axios
+      .get(this.endpoint)
+      .then((response) => {
+        this.dataSource.data = response.data;
       })
-    .catch(error => {
-        console.error(error);
+      .catch((error) => {
+        this._snackBar.open(
+          ['Erro ao pesquisar as transições'].join(' - '),
+          'Fechar',
+          AppSettings.CONF_SNACK
+        );
       })
-    .finally(() => {});
+      .finally(() => {});
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
+  }
 
-   
-  
-
+  excluir(id_fluxo_movimento) {
+    const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirmação',
+        message: 'Confirma a exclusão do registro?',
+      },
+    });
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result === true) {
+        axios
+          .delete([this.endpoint, id_fluxo_movimento].join('/'))
+          .then((response) => {
+            this._snackBar.open(
+              'Registro Excluído com sucesso!',
+              'Fechar',
+              AppSettings.CONF_SNACK
+            );
+          })
+          .catch((error) => {
+            this._snackBar.open(
+              [
+                'O registro possui informações relacionadas e por isso não pode ser excluído',
+              ].join(' - '),
+              'Fechar',
+              AppSettings.CONF_SNACK
+            );
+          });
+      }
+    });
+  }
 }

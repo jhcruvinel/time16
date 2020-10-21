@@ -1,0 +1,89 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Cadastro de Transições do Fluxo</mat-card-title>
+    </mat-card-header>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Selecione a situação de origem</ng-template>
+                <mat-form-field>
+                    <mat-label>Situacao</mat-label>
+                    <mat-select formControlName="id_situacao_origem">
+                        <mat-option *ngFor="let tipo of vl_situacoes" [value]="tipo.value">
+                            {{tipo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Próximo</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Selecione o evento que irá ocorrer</ng-template>
+                <mat-form-field>
+                    <mat-label>Evento</mat-label>
+                    <mat-select formControlName="id_evento">
+                        <mat-option *ngFor="let tipo of vl_eventos" [value]="tipo.value">
+                            {{tipo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Voltar</button>
+                    <button mat-button matStepperNext>Próximo</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="finalForm">
+            <form [formGroup]="finalForm">
+                <ng-template matStepLabel>Selecione a situação de destino</ng-template>
+                <mat-form-field>
+                    <mat-label>Situação Destino</mat-label>
+                    <mat-select formControlName="id_situacao_destino">
+                        <mat-option *ngFor="let tipo of vl_situacoes" [value]="tipo.value">
+                            {{tipo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Consistente</mat-label>
+                    <mat-select formControlName="ind_consistente">
+                        <mat-option *ngFor="let tipo of ind_sim_nao" [value]="tipo.value">
+                            {{tipo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Efetiva</mat-label>
+                    <mat-select formControlName="ind_efetiva">
+                        <mat-option *ngFor="let tipo of ind_sim_nao" [value]="tipo.value">
+                            {{tipo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Salvar</ng-template>
+            <p>Confirme as informações para submeter</p>
+            <div>
+                <button mat-flat-button color="primary" aria-label="Cadastrar um novo evento" type="submit">
+                    <mat-icon>save</mat-icon>
+                </button>                
+                <button mat-button matStepperPrevious>Volvar</button>
+                <button mat-button (click)="stepper.reset()">Limpar</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <div>
+        <button mat-flat-button color="primary" aria-label="Voltar" [routerLink]="'/fluxoprincipal'">
+            <mat-icon>backspace </mat-icon>
+        </button>
+    </div>
+</mat-card>
