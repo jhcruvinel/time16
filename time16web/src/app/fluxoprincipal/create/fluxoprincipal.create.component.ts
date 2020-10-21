@@ -29,8 +29,6 @@ export class FluxoPrincipalCreateComponent implements OnInit {
   secondFormGroup: FormGroup;
   finalForm: FormGroup;
 
-  id_evento: number = null;
-
   ind_sim_nao = [
     { value: 'S', viewValue: 'Sim' },
     { value: 'N', viewValue: 'Não' },
@@ -38,6 +36,7 @@ export class FluxoPrincipalCreateComponent implements OnInit {
 
   vl_eventos: any = [];
   vl_situacoes: any = [];
+  vl_grupos: any = [];
 
   constructor(
     public dialog: MatDialog,
@@ -47,6 +46,25 @@ export class FluxoPrincipalCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    axios
+      .get([AppSettings.API_ENDPOINT, 'v1.0/grupo'].join('/'))
+      .then((response) => {
+        for (let element of response.data) {
+          this.vl_grupos.push({
+            value: element['id_grupo'],
+            viewValue: element['ds_grupo'],
+          });
+        }
+      })
+      .catch((error) => {
+        this._snackBar.open(
+          ['Erro ao listar os eventos do sistema.'].join(' - '),
+          'Fechar',
+          AppSettings.CONF_SNACK
+        );
+      });
+
     axios
       .get([AppSettings.API_ENDPOINT, 'v1.0/evento'].join('/'))
       .then((response) => {
@@ -88,10 +106,11 @@ export class FluxoPrincipalCreateComponent implements OnInit {
       id_situacao_origem: ['', Validators.required],
       ind_fluxo_ri: ['N'],
       sg_tribunal: ['TRT3'],
+      id_grupo: [''],
       sg_grau: ['G2'],
     });
     this.secondFormGroup = this.fb.group({
-      id_evento: ['', Validators.required],
+      id_evento: ['', Validators.required]
     });
     this.finalForm = this.fb.group({
       ind_consistente: [''],
@@ -100,17 +119,23 @@ export class FluxoPrincipalCreateComponent implements OnInit {
     });
   }
 
-  salvarTransicaoFluxo(values1, values2, values3) {
-    let values = Object.assign(Object.assign(values1, values2), values3);
-    console.log(values);
+  verDados() {
+    return Object.assign(Object.assign(this.firstFormGroup.value, this.secondFormGroup.value),this.finalForm.value);
+  }
+
+  salvarTransicaoFluxo() {
+    let values = Object.assign(
+      Object.assign(this.firstFormGroup.value, this.secondFormGroup.value),
+      this.finalForm.value
+    );
+    
     if (this.finalForm.status === 'VALID') {
       let json_data = JSON.stringify(values);
       console.log(json_data);
       try {
         axios
-          .post([AppSettings.API_ENDPOINT, 'v1.0/evento'].join('/'), json_data)
+          .post([AppSettings.API_ENDPOINT, 'v1.0/fluxo'].join('/'), json_data)
           .then((response) => {
-            this.id_evento = response.data['id_evento'];
             this._snackBar.open(
               'Registro Inserido com sucesso!',
               'Fechar',
@@ -139,13 +164,5 @@ export class FluxoPrincipalCreateComponent implements OnInit {
         AppSettings.CONF_SNACK
       );
     }
-  }
-
-  submitForm() {
-    this.salvarTransicaoFluxo(
-      this.firstFormGroup.value,
-      this.secondFormGroup.value,
-      this.finalForm.value
-    );
   }
 }

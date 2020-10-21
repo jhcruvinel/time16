@@ -85,6 +85,7 @@ export class FluxoprincipalComponent implements OnInit {
         axios
           .delete([this.endpoint, id_fluxo_movimento].join('/'))
           .then((response) => {
+            this.consultaFluxoPrincipal();
             this._snackBar.open(
               'Registro Excluído com sucesso!',
               'Fechar',

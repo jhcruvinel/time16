@@ -14,14 +14,24 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Grupo</mat-label>
+                    <mat-select formControlName="id_grupo">
+                        <mat-option *ngFor="let tipo of vl_grupos" [value]="tipo.value">
+                            {{tipo.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>                   
                 <div>
-                    <button mat-button matStepperNext>Próximo</button>
+                    <button mat-button matStepperNext title="próximo">
+                        <mat-icon>keyboard_tab</mat-icon>
+                    </button>
                 </div>
             </form>
         </mat-step>
         <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Selecione o evento que irá ocorrer</ng-template>
+                <ng-template matStepLabel>Selecione o evento eque irá ocorrer</ng-template>
                 <mat-form-field>
                     <mat-label>Evento</mat-label>
                     <mat-select formControlName="id_evento">
@@ -29,10 +39,14 @@
                             {{tipo.viewValue}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field>             
                 <div>
-                    <button mat-button matStepperPrevious>Voltar</button>
-                    <button mat-button matStepperNext>Próximo</button>
+                    <button mat-button matStepperPrevious title="voltar">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </button>
+                    <button mat-button matStepperNext title="próximo">
+                        <mat-icon>keyboard_tab</mat-icon>
+                    </button>
                 </div>
             </form>
         </mat-step>
@@ -64,26 +78,23 @@
                     </mat-select>
                 </mat-form-field>
                 <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                    <button mat-button matStepperPrevious title="voltar">
+                        <mat-icon>keyboard_backspace</mat-icon>
+                    </button>
+                    <button mat-button color="primary" aria-label="Cadastrar uma nova transição" title="salvar"
+                        (click)="salvarTransicaoFluxo()">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                    <button mat-button (click)="stepper.reset()" title="limpar">
+                        <mat-icon>restore_page</mat-icon>
+                    </button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Salvar</ng-template>
-            <p>Confirme as informações para submeter</p>
-            <div>
-                <button mat-flat-button color="primary" aria-label="Cadastrar um novo evento" type="submit">
-                    <mat-icon>save</mat-icon>
-                </button>                
-                <button mat-button matStepperPrevious>Volvar</button>
-                <button mat-button (click)="stepper.reset()">Limpar</button>
-            </div>
-        </mat-step>
     </mat-horizontal-stepper>
     <div>
-        <button mat-flat-button color="primary" aria-label="Voltar" [routerLink]="'/fluxoprincipal'">
-            <mat-icon>backspace </mat-icon>
+        <button mat-flat-button aria-label="Voltar" [routerLink]="'/fluxoprincipal'">
+            <mat-icon>backspace</mat-icon>
         </button>
     </div>
 </mat-card>
