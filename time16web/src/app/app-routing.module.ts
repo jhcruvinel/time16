@@ -18,6 +18,7 @@ import { Visual3Component } from './visual3/visual3.component';
 import { ElasticComponent } from './elastic/elastic.component';
 import { FluxoesperadoComponent } from './fluxoesperado/fluxoesperado.component';
 import { ProcessosituacaoComponent } from './processosituacao/processosituacao.component';
+import { DetalheComponent } from './processosituacao/detalhe/detalhe.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FluxoPrincipalCreateComponent } from './fluxoprincipal/create/fluxoprincipal.create.component'
 
@@ -43,7 +44,8 @@ const routes: Routes = [
   { path: 'visual3', component: Visual3Component },
   { path: 'elastic', component: ElasticComponent },
   { path: 'fluxoesperado', component: FluxoesperadoComponent },
-  { path: 'processosituacao', component: ProcessosituacaoComponent }
+  { path: 'processosituacao', component: ProcessosituacaoComponent },
+  { path: 'processosituacao/detalhe/:cdProcesso', component: DetalheComponent }
 ];
 
 @NgModule({
