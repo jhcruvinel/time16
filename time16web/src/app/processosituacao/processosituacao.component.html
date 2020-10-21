@@ -1,15 +1,7 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Análise de Processos - Escolha a situação abaixo e aguarde:</mat-card-title>
+        <mat-card-title>Análise de Processos com inconsistências</mat-card-title>
     </mat-card-header>
-    <mat-card-header>
-        <mat-radio-group aria-label="Selecione" (change)="onChangeConsistente()" [(ngModel)]="consistente">
-            <mat-radio-button value="N">Inconsistentes</mat-radio-button>
-            <mat-radio-button value="S">Consistentes</mat-radio-button>
-        </mat-radio-group>
-    </mat-card-header>
-</mat-card>
-<mat-card>
     <mat-form-field>
         <mat-label>Filtro</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Número" #input>
@@ -17,7 +9,7 @@
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
         <ng-container matColumnDef="nu_processo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Número</th>
-            <td mat-cell *matCellDef="let element"> {{element.nu_processo}} </td>
+            <td mat-cell *matCellDef="let element"> {{formatProcesso(element.cd_processo)}} </td>
         </ng-container>
         <ng-container matColumnDef="cd_processo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Código</th>
@@ -40,12 +32,12 @@
             <td mat-cell *matCellDef="let element"> {{element.ds_orgao_julgador}} </td>
         </ng-container>
         <ng-container matColumnDef="ind_presidencia">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Ind. Presidência</th>
-            <td mat-cell *matCellDef="let element"> {{element.ind_presidencia}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Processo da presidência</th>
+            <td mat-cell *matCellDef="let element"> {{element.ind_presidencia == 'S' ? 'Sim' : 'Não'}} </td>
         </ng-container>
         <ng-container matColumnDef="dt_autuacao">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Autuação</th>
-            <td mat-cell *matCellDef="let element"> {{element.dt_autuacao}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.dt_autuacao | date:'dd/MM/yyyy H:mm:ss'}} </td>
         </ng-container>
         <ng-container matColumnDef="operacao">
             <th mat-header-cell *matHeaderCellDef>Operações</th>
@@ -55,7 +47,8 @@
                     <mat-icon>zoom_in</mat-icon>
                 </button>
                 <span class="sep"></span>
-                <button mat-flat-button color="basic" aria-label="Refresh" (click)="refresh(element.sg_tribunal,element.sg_grau,element.cd_processo)">
+                <button mat-flat-button color="basic" aria-label="Refresh"
+                    (click)="refresh(element.sg_tribunal,element.sg_grau,element.cd_processo)">
                     <mat-icon>refresh</mat-icon>
                 </button>
             </td>
@@ -64,5 +57,5 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </mat-card>

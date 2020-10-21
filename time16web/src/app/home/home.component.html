@@ -57,27 +57,46 @@
             </mat-card-title>
           </mat-card-header>
           <button type="button" class="list-group-item list-group-item-action">
-            <ul>
-              <li>Principais requisitos:</li>
-              <ul>
-                <li>Ele terá os fluxos baseados em movimentos, diferente do Pje que é por tarefas. </li>
-                <li>Poderá ser aplicável a qualquer ramo, uma vez que o usuário vai poder desenhar o seu fluxo.</li>
-                <li>Uma vez existindo um fluxo correto, os processos com desvios poderão ter os seus usuários notificados.</li>
-                <li>O fluxo desenhado servirá como fonte de referência e mentoria para os usuários das unidades judiciárias.</li>
-              </ul>
-              <li>Vantagens:</li>
-              <ul>
-                <li>Possibilitará que o erro seja identificado antes do processo chegar ao datajud (os tribunais podem atuar na origem do dado)</li>
-                <li>Facilidade de integração com os sistemas dos Tribunais, pois se baseia na TPU do CNJ</li>
-                <li>Com a definição de padrões, poderemos identificar gargalos e pontos de melhoria</li>
-              </ul>
-              <li>Melhorias futuras:</li>
-              <ul>
-                <li>Poderá ser uma fonte de convergência das regras de negócio do JN</li>
-                <li>Poderá integrar ao fluxo do Pje, para que os movimentos e dados da TPU estejam no cerne do PJe</li>
-                <li>Poderá registrar fluxos a partir de ferramentas de process mining, ou seja, podemos gerar fluxos automaticamente e o usuário somente validar (integração com o desafio 1)</li>
-              </ul>
-            </ul>
+            <p>O fato de grande parte dos processos em tramitação apresentarem movimentações inconsistentes com o fluxo
+              esperado impacta negativamente as estatísticas dos Tribunais.</p>
+            <p>As inconsistências nas movimentações também tem efeitos danosos as demais estatísticas geradas pois
+              produzem dados de pouca qualidade o que dificulta a gestão estratégica da justiça.</p>
+            <p>As detecções destas inconsistências ainda é um processo extremamente manual e laborioso, com o extenso
+              acervo de processos esta tarefa se torna ainda mais difícil. O trabalho necessário para melhorar a
+              qualidade destes dados acaba demanda muita atenção e esforçou por múltiplos servidores dos diferentes
+              órgãos.</p>
+            <p>Técnicas automatizadas para a detecção destas inconsistências costumam ser bastante pontuais e sua gestão
+              muito difícil. Boa parte disso é porque as regras a serem implementadas nestas técnicas são regras
+              complexas do domínio jurídico e existe uma grande dificuldade em passar estas regras para os especialistas
+              de TI para o seu desenvolvimento. </p>
+
+            <p>Por fim, estas soluções concentram bastante a dependência no setor de TI e a alteração das regras, quando
+              necessário, é um processo extremamente trabalhoso que precisa envolver uma equipe integrada com
+              profissionais especialistas de diferentes áreas: jurídica, estatísticas e tecnologia da informação.</p>
+            <h3>Persona 1: Juiz e Desembargador:</h3>
+            <p>
+              O juiz Antônio é extremamente diligente. Ele possui um processo de trabalho bem definido e sua vara é
+              bastante efetiva. Porém, ele não concorda com a forma como sua vara é vista recebendo constantes críticas
+              quanto a sua produtividade. Sua percepção é que, os números gerados pelas estatísticas não refletem seu
+              esforço e a realidade, este fator o deixa desestimulado.
+            </p>
+            <h3>Persona 1: Resultados Gerados</h3>
+            <p>
+              O juiz Antônio passa a poder, por meio do comitê judiciário/estatístico, sugerir mudanças no fluxo agindo
+              proativamente para ajuste nas estatísticas.
+              Se sente mais confiante que a gestão efetiva em seu gabinete se reflete nas estatísticas e em como ele é
+              avaliado e pode perceber gratificações por produtividade. Ele ainda consegue gerar relatórios mais
+              adequadas
+              que o ajudam ainda mais na gestão de seu gabinete e com base nestes dados mais consistentes consegue
+              analisar e efetivar alterações que aumentam a qualidade e produtividade do trabalho.
+            </p>
+            <h3>Persona 2 - Servidora</h3>
+            <p>
+              Maraísa, apesar de bastante diligente, não consegue entender porque as estatísticas de sua vara no CNJ
+              parecem tão ruins.
+              Ela ficou muito mais satisfeita de identificar de forma antecipada quando a movimentação processual não
+              refletiu a realidade. Ela consegue agora fazer ajustes a tempo. Seu trabalho é mais reconhecido e ela
+              consegue enxergar melhor pontos de melhoria nos processos de trabalho.</p>
           </button>
 
         </div>
@@ -108,7 +127,8 @@
           <mat-card-header>
             <div mat-card-avatar class="example-header-rogelio"></div>
             <mat-card-title>Rogélio Bar Neto</mat-card-title>
-            <mat-card-subtitle>Cargo: Negócio. Odontólogo, Pós-Graduado em Auditoria em Sistemas de Saúde e Especialista em Odontologia em Saúde Coletiva, servidor do TRT3</mat-card-subtitle>
+            <mat-card-subtitle>Cargo: Negócio. Odontólogo, Pós-Graduado em Auditoria em Sistemas de Saúde e Especialista
+              em Odontologia em Saúde Coletiva, servidor do TRT3</mat-card-subtitle>
           </mat-card-header>
           <div class="card-footer">
             <small class="text-muted">E-mail: Rogelio_bar@hotmail.com</small>
@@ -118,7 +138,8 @@
           <mat-card-header>
             <div mat-card-avatar class="example-header-orair"></div>
             <mat-card-title>Gustavo Orair</mat-card-title>
-            <mat-card-subtitle>Cargo: TI. Cientista de Dados, mestre em Ciência da Computação, Gestor na Secretaria de Governo Digital do Ministério da Economia, servidor do TST</mat-card-subtitle>
+            <mat-card-subtitle>Cargo: TI. Cientista de Dados, mestre em Ciência da Computação, Gestor na Secretaria de
+              Governo Digital do Ministério da Economia, servidor do TST</mat-card-subtitle>
           </mat-card-header>
           <div class="card-footer">
             <small class="text-muted">E-mail: gustavo.orair@gmail.com</small>
@@ -128,7 +149,8 @@
           <mat-card-header>
             <div mat-card-avatar class="example-header-thiago"></div>
             <mat-card-title>Thiago Alencar Gomes</mat-card-title>
-            <mat-card-subtitle>Cargo: TI. Cientista da Computação e Pós Graduado em Administração Pública, servidor do STJ. 
+            <mat-card-subtitle>Cargo: TI. Cientista da Computação e Pós Graduado em Administração Pública, servidor do
+              STJ.
             </mat-card-subtitle>
           </mat-card-header>
           <div class="card-footer">
@@ -139,7 +161,8 @@
           <mat-card-header>
             <div mat-card-avatar class="example-header-cruvinel"></div>
             <mat-card-title>José Humberto Cruvinel</mat-card-title>
-            <mat-card-subtitle>Cargo: TI. Mestre em Administração Pública, Professor universitário, servidor do TRT3.</mat-card-subtitle>
+            <mat-card-subtitle>Cargo: TI. Mestre em Administração Pública, Professor universitário, servidor do TRT3.
+            </mat-card-subtitle>
           </mat-card-header>
           <div class="card-footer">
             <small class="text-muted">E-mail: josehcr.trt3@gmail.com</small>

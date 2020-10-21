@@ -1,16 +1,2 @@
-<form>
-    <div class="form-row">
-        <div class="col">
-            <select class="form-control" (change)="onChangeTribunal($event.target.value)" [(ngModel)]="tribunal" name="tribunal">
-                <option *ngFor="let t of tribunais" [value]="t.sg_tribunal">Órgão: {{t.sg_tribunal}}</option>
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" (change)="onChangeGrau($event.target.value)" [(ngModel)]="grau" name="grau">
-                <option *ngFor="let g of graus" [value]="g.sg_grau">Grau: {{g.sg_grau}}</option>
-            </select>
-        </div>
-    </div>
-</form>
 <h4 style="margin-left: 15px;">Dica: Clique nas bolinhas azuis para expandir</h4>
 <div class="d3-chart" id="tree" ></div>

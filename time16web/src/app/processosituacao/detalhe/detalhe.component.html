@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Detalhe do Processo {{ cd_processo }}</mat-card-title>
+        <mat-card-title>Detalhe do Processo {{ formataNumeroProcesso(cd_processo) }}</mat-card-title>
     </mat-card-header>
 </mat-card>
 <mat-card>
@@ -20,7 +20,7 @@
         </ng-container>
         <ng-container matColumnDef="dt_ocorrencia">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Ocorrência</th>
-            <td mat-cell *matCellDef="let element"> {{element.dt_ocorrencia}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.dt_ocorrencia | date:'dd/MM/yyyy H:mm:ss'}} </td>
         </ng-container>
         <ng-container matColumnDef="ds_situacao">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Situação Origem</th>
